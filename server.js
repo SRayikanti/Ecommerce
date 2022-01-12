@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 const userRoute = require("./routes/user")
+const userRoute = require("./routes/auth")
 
 
 const bcrypt = require('bcrypt')
@@ -55,7 +56,8 @@ app.get("/api/test", () => {
     console.log("test is successful")
 })
 
-app.use("/api/user", userRoute)
+app.use("/api/user", authRoute)
+app.use("/api/auth", userRoute)
 
 app.listen(process.env.PORT || 3000, () => {
     console.log("Backend server is running")
